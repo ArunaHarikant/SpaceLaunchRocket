@@ -5,9 +5,18 @@ let countdownInterval = null;
 
 async function fetchLaunches() {
     try {
-        const response = await fetch(API_URL);
+        // Adding a timestamp to bypass aggressive browser caching from GitHub Pages
+        const response = await fetch(API_URL + '&timestamp=' + new Date().getTime());
         const data = await response.json();
         
+        if (data.detail && data.detail.includes("throttled")) {
+            // Rate limit triggered!
+            document.getElementById('countdown').textContent = "API Rate Limit Hit!";
+            document.getElementById('next-launch-details').innerHTML = `<p style="color: #ff6b6b;">${data.detail}</p><p>The Space Devs API only allows 15 requests per hour. Please wait a bit and refresh.</p>`;
+            document.getElementById('launches-container').innerHTML = "<p>Data temporarily restricted due to API limits.</p>";
+            return;
+        }
+
         if (data && data.results && data.results.length > 0) {
             displayLaunches(data.results);
         } else {
