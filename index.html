@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Rocket Launch Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>🚀 Live Rocket Launch Dashboard</h1>
+    </header>
+    
+    <main>
+        <section id="next-launch-section" class="highlight">
+            <h2>Next Upcoming Launch</h2>
+            <div id="countdown" class="countdown">
+                Loading countdown...
+            </div>
+            <div id="next-launch-details" class="details"></div>
+        </section>
+
+        <section id="future-launches">
+            <h2>Following Launches</h2>
+            <div id="launches-container">
+                <p>Loading launches...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Data provided by <a href="https://thespacedevs.com/" target="_blank">The Space Devs</a>.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
