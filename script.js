@@ -9,11 +9,11 @@ async function fetchLaunches() {
         const response = await fetch(API_URL + '&timestamp=' + new Date().getTime());
         const data = await response.json();
         
-        if (data.detail && data.detail.includes("throttled")) {
-            // Rate limit triggered!
-            document.getElementById('countdown').textContent = "API Rate Limit Hit!";
-            document.getElementById('next-launch-details').innerHTML = `<p style="color: #ff6b6b;">${data.detail}</p><p>The Space Devs API only allows 15 requests per hour. Please wait a bit and refresh.</p>`;
-            document.getElementById('launches-container').innerHTML = "<p>Data temporarily restricted due to API limits.</p>";
+        if (data.detail) {
+            // Rate limit or other API block!
+            document.getElementById('countdown').textContent = "API Blocked/Limited!";
+            document.getElementById('next-launch-details').innerHTML = `<p style="color: #ff6b6b;">Message: ${data.detail}</p><p>The Space Devs free API has strict limits. Please wait a bit and refresh.</p>`;
+            document.getElementById('launches-container').innerHTML = "<p>Data restricted by the API provider.</p>";
             return;
         }
 
